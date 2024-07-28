@@ -75,7 +75,7 @@ const TextToSpeech = ({text}) => {
   };
 
   return (
-    <Button className=" text-white text-lg max-w-full lg:w-1/6 lg:h-20 w-2/5 h-16 transition ease-in-out delay-150 bg-orange-600 hover:scale-110 hover:bg-red-400 " onClick={handlePlay}>
+    <Button className=" text-white text-lg max-w-full lg:w-[24%] lg:h-20 w-[45%] h-16 transition ease-in-out delay-150 bg-orange-600 hover:scale-110 hover:bg-red-400 " onClick={handlePlay}>
       {text}
     </Button>
   );

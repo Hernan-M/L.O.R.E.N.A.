@@ -10,9 +10,7 @@ import NetworkStatus from './components/modais/networkStatus';
 function App() {
   const [stream, setStream] = useState(true);
   const [error, setError] = useState(null);
-  const [counter, setCounter] = useState(0)
-  const [eyeDataX, SetEyeDataX] = useState(0)
-  const [eyeDataY, SetEyeDataY] = useState(0)
+  const [isReady, setIsReady] = useState(null)
   const webgazer = window.webgazer;
   const [onlineStatus, SetOnlineStatus] = useState(navigator.onLine)
 
@@ -47,15 +45,14 @@ function App() {
     if(onlineStatus){
       webgazer.setGazeListener().clearData();
       document.body.addEventListener('contextmenu', handleClick);
-      
-      webgazer.setGazeListener( (data, clock) => {
+      const isReady = webgazer.setGazeListener( (data, clock) => {
           webgazer.showFaceOverlay(false)
           if(data){
             x = (parseInt(data.x))
             y = (parseInt(data.y))
           }
-        }).begin();
-      // eslint-disable-next-line no-unused-vars
+      }).begin();
+      setIsReady(isReady)
       if (!stream) getUserMedia();
 
       return () => {
@@ -74,30 +71,30 @@ function App() {
 
   return (
     <div className='h-screen'>
-    {!stream && onlineStatus && <Modal />}
+    {!stream && onlineStatus && isReady &&<Modal />}
     {!onlineStatus && <NetworkStatus/>}
     <div className='h-64 w-full '></div>
-    <div className='flex flex-col lg:gap-10 gap-6 max-h-screen'>
-      <div>
-        <h1 className='pl-10 lg:pl-60 '>Saudações</h1>
-        <div className="flex gap-4 flex-wrap align-center justify-center">
+    <div className='flex flex-col lg:gap-10 gap-6 max-h-screen w-full justify-center items-center'>
+      <div className='flex flex-col w-full max-w-[1200px]'>
+        <h1 className='pl-6'>Saudações</h1>
+        <div className="flex w-full gap-2 flex-wrap align-center justify-center">
           { phrases.lineOne.map( (phrases, key) => <TextToSpeech key={key} text={phrases} />) }
         </div>
       </div>
-      <div>
-        <h1 className='pl-10 lg:pl-60'>Humor</h1>
-        <div className="flex gap-4 flex-wrap align-center justify-center">
+      <div className='flex flex-col w-full max-w-[1200px]'>
+        <h1 className='pl-6'>Humor</h1>
+        <div className="flex w-full gap-2 flex-wrap align-center justify-center">
           { phrases.lineTwo.map( (phrases, key) => <TextToSpeech key={key} text={phrases} />) }
         </div>  
       </div>
-      <div>
-        <h1 className='pl-10 lg:pl-60'>Necessidades</h1>
-        <div className="flex gap-4 flex-wrap align-center justify-center">    
+      <div className='flex flex-col w-full max-w-[1200px]'>
+        <h1 className='pl-6'>Necessidades</h1>
+        <div className="flex w-full gap-2 flex-wrap align-center justify-center">    
           { phrases.lineThree.map( (phrases, key) => <TextToSpeech key={key} text={phrases} />) }
         </div>
       </div>
     </div>
-    <Menu className="fixed top-0"/>
+    <Menu/>
     </div>
   );
 }
