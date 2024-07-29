@@ -2,10 +2,11 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import { phrases } from './data/phrases';
-import TextToSpeech from './components/speech'
-import Menu from './layout/menu';
+import TextToSpeech from './components/cards/speech'
 import Modal from './components/modais/modalCamera'
 import NetworkStatus from './components/modais/networkStatus';
+import Menu from './layout/menu';
+
 
 function App() {
   const [stream, setStream] = useState(true);
@@ -43,8 +44,9 @@ function App() {
 
     SetOnlineStatus(navigator.onLine)
     if(onlineStatus){
-      webgazer.setGazeListener().clearData();
+      
       document.body.addEventListener('contextmenu', handleClick);
+      webgazer.setGazeListener().clearData();
       const isReady = webgazer.setGazeListener( (data, clock) => {
           webgazer.showFaceOverlay(false)
           if(data){
@@ -73,7 +75,7 @@ function App() {
     <div className='h-screen'>
     {!stream && onlineStatus && isReady &&<Modal />}
     {!onlineStatus && <NetworkStatus/>}
-    <div className='h-64 w-full '></div>
+    <div className='h-60 w-full '></div>
     <div className='flex flex-col lg:gap-10 gap-6 max-h-screen w-full justify-center items-center'>
       <div className='flex flex-col w-full max-w-[1200px]'>
         <h1 className='pl-6'>Saudações</h1>
@@ -94,7 +96,7 @@ function App() {
         </div>
       </div>
     </div>
-    <Menu/>
+    <Menu />
     </div>
   );
 }

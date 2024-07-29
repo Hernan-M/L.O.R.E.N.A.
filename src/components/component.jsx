@@ -1,6 +1,6 @@
 
-const Component = ({text}) => {
-  return text
+export const Calibrate = () => {
+  return (
+    <>Calibrar</>
+  )
 }
-
-export default Component
