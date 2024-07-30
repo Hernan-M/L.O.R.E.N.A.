@@ -23,7 +23,7 @@ const useWebGazerSetup = () => {
 
     let width = window.innerWidth/ 2
     let height = window.innerHeight/ 2
-    
+    document.elementFromPoint(width, height)?.click();
 
     let x, y;
 
@@ -40,9 +40,10 @@ const useWebGazerSetup = () => {
       document.elementFromPoint(width, height).click();
       document.body.addEventListener('contextmenu', handleClick);
       webgazer.setGazeListener((data, clock) => {
+        if(clock) setIsReady(true);
         webgazer.showFaceOverlay(false);
         if (data) {
-          setIsReady(true);
+          
           x = parseInt(data.x);
           y = parseInt(data.y);
         }

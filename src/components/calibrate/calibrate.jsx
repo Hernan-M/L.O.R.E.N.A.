@@ -11,7 +11,7 @@ export const Calibrate = () => {
   const widthScreen = window.innerWidth
   // Inicializando o estado para armazenar a cor de cada ponto
   const [dotColors, setDotColors] = useState(Array(numberDots).fill(0));
-  const {stream, onlineStatus, isReady, isMobile} = useContext(AppContext)
+  const {stream, onlineStatus, isReady, isCameraActivate} = useContext(AppContext)
 
   const changeColor = (index) => {
     if(dotColors[index] < 2){
@@ -43,17 +43,15 @@ export const Calibrate = () => {
   ];
 
   function deactiveCam() {
-    if(isMobile) {
       const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
       videoElements.forEach(element => {
       element.style.display = 'none';
       });
-    }
   }
 
   useEffect(() => {
-    if (isMobile) deactiveCam();
-  },[isReady])
+     if(!isCameraActivate) deactiveCam();
+  },[isCameraActivate])
 
   return (
     <>
