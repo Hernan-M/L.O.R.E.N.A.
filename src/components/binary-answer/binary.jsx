@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import Menu from "../../layout/menu"
 import TextToSpeech from "../cards/speech"
 import Modal from "../modais/modalCamera"
@@ -8,11 +8,20 @@ import { AppContext } from "../../App"
 
 export const Binary = () => {
 
-  const {stream, onlineStatus, isReady} = useContext(AppContext)
-  const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
-    videoElements.forEach(element => {
+  const {stream, onlineStatus, isReady, isMobile} = useContext(AppContext)
+
+  function deactiveCam() {
+    if(isMobile) {
+      const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
+      videoElements.forEach(element => {
       element.style.display = 'none';
-    });
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (isMobile) deactiveCam();
+  },[isReady])
 
   
 

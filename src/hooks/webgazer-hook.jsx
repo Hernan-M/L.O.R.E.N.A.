@@ -23,8 +23,6 @@ const useWebGazerSetup = () => {
 
     let width = window.innerWidth/ 2
     let height = window.innerHeight/ 2
-
-    console.log(width, height)
     
 
     let x, y;

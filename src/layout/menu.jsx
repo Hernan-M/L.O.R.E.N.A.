@@ -27,7 +27,6 @@ const Menu = () => {
   const toggleCamera = () => {
     // const whitebox = document.getElementById('whitebox')    
     // if(whitebox) whitebox.style.display = isCameraActive ? 'none' : 'block';
-
     const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
     videoElements.forEach(element => {
       element.style.display = isCameraActive ? 'none' : 'block';

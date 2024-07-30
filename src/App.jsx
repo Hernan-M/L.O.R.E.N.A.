@@ -43,7 +43,7 @@ function App() {
 
     }, [])
 
-  const [isCameraActive, setIsCameraActive] = useState(true);
+  const [isCameraActive, setIsCameraActive] = useState(false);
   const { stream, error, isReady, isLoaded, onlineStatus } = useWebGazerSetup();
 
   return (

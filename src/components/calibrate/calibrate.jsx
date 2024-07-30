@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Menu from "../../layout/menu";
+import { AppContext } from "../../App";
+import NetworkStatus from "../modais/networkStatus";
+import Modal from "../modais/modalCamera";
 
 export const Calibrate = () => {
   const colorStyle = ["bg-red", "bg-yellow", "bg-green"];
@@ -8,6 +11,7 @@ export const Calibrate = () => {
   const widthScreen = window.innerWidth
   // Inicializando o estado para armazenar a cor de cada ponto
   const [dotColors, setDotColors] = useState(Array(numberDots).fill(0));
+  const {stream, onlineStatus, isReady, isMobile} = useContext(AppContext)
 
   const changeColor = (index) => {
     if(dotColors[index] < 2){
@@ -38,16 +42,25 @@ export const Calibrate = () => {
     "bottom-20 right-0" // Bottom right
   ];
 
-  const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
-    videoElements.forEach(element => {
+  function deactiveCam() {
+    if(isMobile) {
+      const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
+      videoElements.forEach(element => {
       element.style.display = 'none';
-    });
+      });
+    }
+  }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (isMobile) deactiveCam();
+  },[isReady])
 
   return (
     <>
+    
       <div className="flex flex-wrap w-full h-screen gap-4 relative">
+      {!stream && onlineStatus && isReady && <Modal />}
+      {!onlineStatus && <NetworkStatus/>}
         {Array.from({ length: numberDots }).map((_, index) => (
           <div
             onClick={() => changeColor(index)}
