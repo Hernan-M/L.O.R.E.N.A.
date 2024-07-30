@@ -17,10 +17,10 @@ export const Binary = () => {
   
 
   return (
-    <div className='max-h-screen'>
+    <div className='h-screen'>
       {!stream && onlineStatus && isReady && <Modal />}
       {!onlineStatus && <NetworkStatus/>}
-      <div className='flex flex-col gap-4 md:gap-10 flex-wrap h-screen w-full'>
+      <div className='flex flex-col gap-4 md:gap-10 flex-wrap justify-center h-screen w-full'>
           <TextToSpeech text="Sim" binaryButton={true}/>
           <TextToSpeech text="Não" binaryButton={true}/>
       </div>

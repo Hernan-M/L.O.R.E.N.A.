@@ -29,7 +29,8 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const [isMobile, setIsMobile] = useState(false)
+  const [modalOff,  setModalOff] = useState(false)
+  const [isMobile, setIsMobile] = useState( () => window.innerWidth < 600 ? true: false)
 
   useEffect(() =>{
     const handleResize = () => {
@@ -46,7 +47,7 @@ function App() {
   const { stream, error, isReady, isLoaded, onlineStatus } = useWebGazerSetup();
 
   return (
-    <AppContext.Provider value={{stream, isMobile, error, isReady, isLoaded,setIsCameraActive , isCameraActive ,onlineStatus}}>
+    <AppContext.Provider value={{stream, isMobile, error, isReady, isLoaded, setIsCameraActive , isCameraActive, onlineStatus, modalOff, setModalOff}}>
       <RouterProvider router={router} />
     </AppContext.Provider>
   );

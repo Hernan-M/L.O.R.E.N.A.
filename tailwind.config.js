@@ -15,7 +15,8 @@ export default {
       bottomBar: "#9999cc",
       red: "#ff3e40",
       yellow: "#e5de00",
-      green : "#00a21b"
+      green : "#00a21b",
+      black : "#000"
     },
     extend: {},   
   },

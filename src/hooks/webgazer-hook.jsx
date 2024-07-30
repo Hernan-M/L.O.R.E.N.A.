@@ -19,10 +19,13 @@ const useWebGazerSetup = () => {
   useEffect(() => {
     webgazer.setGazeListener().clearData();
     if (!isLoaded) webgazer.setGazeListener().begin();
-
-    console.log(isLoaded);
     setIsLoaded(true);
-    document.elementFromPoint(0, 0).click();
+
+    let width = window.innerWidth/ 2
+    let height = window.innerHeight/ 2
+
+    console.log(width, height)
+    
 
     let x, y;
 
@@ -36,6 +39,7 @@ const useWebGazerSetup = () => {
 
     SetOnlineStatus(navigator.onLine);
     if (onlineStatus) {
+      document.elementFromPoint(width, height).click();
       document.body.addEventListener('contextmenu', handleClick);
       webgazer.setGazeListener((data, clock) => {
         webgazer.showFaceOverlay(false);
