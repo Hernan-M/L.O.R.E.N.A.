@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Menu from "../../layout/menu";
 
 export const Calibrate = () => {
-  const colorStyle = ["bg-red-400", "bg-yellow-400", "bg-green-600"];
+  const colorStyle = ["bg-red", "bg-yellow", "bg-green"];
   const numberDots = 9;
   
+  const widthScreen = window.innerWidth
   // Inicializando o estado para armazenar a cor de cada ponto
   const [dotColors, setDotColors] = useState(Array(numberDots).fill(0));
 
@@ -21,6 +22,10 @@ export const Calibrate = () => {
     console.log(dotColors)
   };
 
+  const whitebox = document.getElementById('whitebox')    
+  if(whitebox && widthScreen < 600) whitebox.style.display = 'none';
+
+
   const positions = [
     "top-0 left-0",    // Top left
     "top-0 left-[42%] md:left-[48%]",    // Top center
@@ -32,6 +37,11 @@ export const Calibrate = () => {
     "bottom-20 left-[42%] md:left-[48%]", // Bottom center
     "bottom-20 right-0" // Bottom right
   ];
+
+  const videoElements = document.querySelectorAll('[id=webgazerVideoContainer]');
+    videoElements.forEach(element => {
+      element.style.display = 'none';
+    });
 
   useEffect(() => {}, []);
 
