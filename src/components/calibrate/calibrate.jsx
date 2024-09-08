@@ -6,7 +6,7 @@ import Modal from "../modais/modalCamera";
 
 export const Calibrate = () => {
   const colorStyle = ["bg-red", "bg-yellow", "bg-green"];
-  const numberDots = 9;
+  const numberDots = 15;
   
   const widthScreen = window.innerWidth
   // Inicializando o estado para armazenar a cor de cada ponto
@@ -32,13 +32,19 @@ export const Calibrate = () => {
 
   const positions = [
     "top-0 left-0",    // Top left
-    "top-0 left-[42%] md:left-[48%]",    // Top center
+    "top-0 left-[21%] md:left-[24%]",
+    "top-0 left-[21%] md:left-[48%]",
+    "top-0 left-[21%] md:left-[72%]",    // Top center
     "top-0 right-0",   // Top right
-    "left-0 top-[40%] ",   // Middle left
-    "left-[42%] top-[40%] md:left-[48%]", // Center
+    "left-0 top-[40%]",   // Middle left
+    "left-[42%] top-[40%] md:left-[24%]", 
+    "left-[42%] top-[40%] md:left-[48%]",
+    "top-[40%] left-[21%] md:left-[72%]",// Center
     "right-0 top-[40%]",  // Middle right
     "bottom-20 left-0", // Bottom left
-    "bottom-20 left-[42%] md:left-[48%]", // Bottom center
+    "bottom-20 left-[21%] md:left-[24%]",
+    "bottom-20 left-[21%] md:left-[48%]",
+    "bottom-20 left-[21%] md:left-[72%]", // Bottom center
     "bottom-20 right-0" // Bottom right
   ];
 

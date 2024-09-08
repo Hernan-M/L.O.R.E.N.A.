@@ -22,8 +22,18 @@ export const Binary = () => {
   useEffect(() => {
     if (isMobile) deactiveCam();
   },[isReady])
+  useEffect(() => {
 
-  
+    function handleClick(e) {
+      if (e.type === "contextmenu") e.preventDefault();
+
+    }
+    document.body.addEventListener('contextmenu', handleClick);
+    return () => {
+      document.body.removeEventListener('contextmenu', handleClick);
+    }
+    
+  })
 
   return (
     <div className='h-screen'>

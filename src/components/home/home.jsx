@@ -9,7 +9,7 @@ import { Button, Spinner } from "@nextui-org/react"
 
 export const Home = () => {
 
- const {stream, onlineStatus, isReady, isMobile, modalOff, setModalOff, isCameraActive} = useContext(AppContext)
+ const {stream, onlineStatus, isReady, isMobile, modalOff, setModalOff} = useContext(AppContext)
 
  function deactiveCam() {
     if(isMobile) {
@@ -22,7 +22,9 @@ export const Home = () => {
   }
 
   useEffect(() => {
+
     if (isMobile && modalOff) deactiveCam();
+    console.log(isReady)
   },[isReady])
 
   return (
